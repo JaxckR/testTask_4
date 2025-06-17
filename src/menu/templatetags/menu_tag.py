@@ -34,7 +34,7 @@ def func(query: list, target: Category, memory: dict | None = None):
 
 @register.inclusion_tag('menu/template_tags/show_menu.html', takes_context=True)
 def draw_menu(context, path):
-    all_categories = list(Category.objects.select_related('parent').all())
+    all_categories = list(Category.objects.all().select_related('parent').order_by('parent__id', 'id'))
 
     for item in all_categories:
         if item.url == path:

@@ -1,6 +1,6 @@
 <h1 class="text-center mb-4">Сейчас вы находитесь в разделе {{ current.name|lower }}</h1>
 <ul>
   {% for node in menu_tree %}
-    {% include "menu/template_tags/menu_node.html" with node=node %}
+    {% include "menu/template_tags/menu_node.html" with node=node current=current %}
   {% endfor %}
 </ul>

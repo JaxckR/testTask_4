@@ -1,12 +1,24 @@
 <li>
     {% if node.item %}
-    <a href="{{ node.item.get_absolute_url }}">
-        {{ node.item.name }}
-    </a>
+        {% if node.item.url == current.url %}
+            <p class="nav-link active">
+                {{ node.item.name }}
+            </p>
+        {% else %}
+            <a href="{{ node.item.get_absolute_url }}">
+                {{ node.item.name }}
+            </a>
+        {% endif %}
     {% else %}
-    <a href="{{ node.get_absolute_url }}">
-        {{ node.name }}
-    </a>
+        {% if node.item.url == current.url %}
+            <p class="nav-link active">
+                {{ node.name }}
+            </p>
+        {% else %}
+            <a href="{{ node.get_absolute_url }}">
+                {{ node.name }}
+            </a>
+        {% endif %}
     {% endif %}
 
     {% if node.child %}

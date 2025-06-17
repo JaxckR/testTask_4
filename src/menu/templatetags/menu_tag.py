@@ -1,4 +1,5 @@
 from django import template
+from django.db import connection
 from django.http import Http404
 
 from menu.models import Category
@@ -25,16 +26,18 @@ def func(query: list, target: Category, memory: dict | None = None):
             memory['child'].append(item)
 
     query.remove(target)
+    memory['child'].sort(key=lambda x: x.name if isinstance(x, Category) else x.get('item').name)
+
 
     if target.parent is not None:
-        memory = func(query, target.parent, memory)
+        memory = func(query, query[query.index(target.parent)], memory)
 
     return memory
 
 
 @register.inclusion_tag('menu/template_tags/show_menu.html', takes_context=True)
 def draw_menu(context, path):
-    all_categories = list(Category.objects.all().select_related('parent').order_by('parent__id', 'id'))
+    all_categories = list(Category.objects.select_related('parent').all())
 
     for item in all_categories:
         if item.url == path:

@@ -22,10 +22,10 @@
     {% endif %}
 
     {% if node.child %}
-    <ul>
-        {% for item in node.child %}
-        {% include "menu/template_tags/menu_node.html" with node=item %}
-        {% endfor %}
-    </ul>
+        <ul>
+            {% for item in node.child %}
+                {% include "menu/template_tags/menu_node.html" with node=item %}
+            {% endfor %}
+        </ul>
     {% endif %}
 </li>

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<h1 class="text-center">Список всех доступных меню</h1>
+{% for item in menu %}
+    <div class="row">
+        <h2 class="text-center">{{ forloop.counter }}. <a href="{{ item.get_absolute_url }}">{{ item.name }}</a></h2>
+    </div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,19 @@
+<li>
+    {% if node.item %}
+    <a href="{{ node.item.get_absolute_url }}">
+        {{ node.item.name }}
+    </a>
+    {% else %}
+    <a href="{{ node.get_absolute_url }}">
+        {{ node.name }}
+    </a>
+    {% endif %}
+
+    {% if node.child %}
+    <ul>
+        {% for item in node.child %}
+        {% include "menu/template_tags/menu_node.html" with node=item %}
+        {% endfor %}
+    </ul>
+    {% endif %}
+</li>

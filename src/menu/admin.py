@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from menu.models import Category
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    fields = ['name', 'parent']
+    list_display = ['name', 'parent']
+    ordering = ['parent']

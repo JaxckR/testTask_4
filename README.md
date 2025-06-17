@@ -26,6 +26,7 @@ docker compose up
 docker exec menu-app python manage.py createsuperuser
 ```
 #### Без использования Docker
+1. Клонируйте репозиторий на ваш компьютер
 ```angular17html
 git clone https://github.com/JaxckR/testTask_4.git
 ```
@@ -33,4 +34,24 @@ git clone https://github.com/JaxckR/testTask_4.git
 ```angular17html
 cd testTask_4
 ```
-3. 
+3. Создайте и активируйте виртуальное окружение
+```angular17html
+python -m venv venv
+```
+```angular17html
+venv\Scripts\activate
+```
+4. Установите все зависимости
+```angular17html
+pip install -r requirements.txt
+```
+5. Перейдите в src, примените миграции и создайте суперпользователя
+```angular17html
+cd src/
+python manage.py migrate
+python manage.py createsuperuser
+```
+6. Запустите приложение
+```angular17html
+python manage.py runserver
+```
